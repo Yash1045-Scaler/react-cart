@@ -12,7 +12,7 @@ const App = () => {
 
   return (
     <div>
-      <Header setPage={setPage} />
+      <Header setPage={setPage} page={page}/>
       {page === "products" ? (
         <Products
           setselectedcat={setselectedcat}
