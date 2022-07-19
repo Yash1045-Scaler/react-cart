@@ -1,37 +1,31 @@
 import React from "react";
 import Item from './Item'
+import { Link,useParams } from "react-router-dom";
+
+
 const Cart = ({
-  setselectedcat,
-  selectedcat,
   cart,
   setCart,
   category,
   setcategory,
 }) => {
+  const { selectedcat } = useParams();
   return (
     <div className="shopping">
       <div className="shopping__category category">
         {category.map((cat, i) =>
           selectedcat === cat ? (
-            <div
+            <Link
               className="category__name category__name--selected"
-              onClick={() => {
-                setselectedcat(cat);
-              }}
               key={i}
+              to={`/cart/${cat}`}
             >
-              {cat}
-            </div>
+              <div>{cat}</div>
+            </Link>
           ) : (
-            <div
-              className="category__name"
-              onClick={() => {
-                setselectedcat(cat);
-              }}
-              key={i}
-            >
-              {cat}
-            </div>
+            <Link className="category__name" key={i} to={`/cart/${cat}`}>
+              <div>{cat}</div>
+            </Link>
           )
         )}
       </div>

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link,useParams } from "react-router-dom";
 
 const Item = ({ item, cart, setCart }) => {
   const removeFromCart = () => {
@@ -13,7 +14,7 @@ const Item = ({ item, cart, setCart }) => {
     tempCart.splice(ri,1);
     setCart(tempCart);
   };
-
+  const {selectedcat} = useParams();
   return (
     <div className="items__card card">
       <div className="card__img">
@@ -26,24 +27,32 @@ const Item = ({ item, cart, setCart }) => {
           <div className="rating__count">User Reviews: {item.rating.count}</div>
           <div className="rating__rate">Rating: {item.rating.rate}</div>
         </div>
-        {cart.filter(
-          (cartItem) =>
-            cartItem.id === item.id && cartItem.category === item.category
-        ).length ? (
-          <button
-            className="details__btn details__btn--remove"
-            onClick={removeFromCart}
-          >
-            Remove from cart
-          </button>
-        ) : (
-          <button
-            className="details__btn details__btn--add"
-            onClick={() => setCart([item, ...cart])}
-          >
-            Add to cart
-          </button>
-        )}
+        <div className="details__buttons buttons">
+          {cart.filter(
+            (cartItem) =>
+              cartItem.id === item.id && cartItem.category === item.category
+          ).length ? (
+            <button
+              className="buttons__btn buttons__btn--remove"
+              onClick={removeFromCart}
+            >
+              Remove from cart
+            </button>
+          ) : (
+            <button
+              className="buttons__btn buttons__btn--add"
+              onClick={() => setCart([item, ...cart])}
+            >
+              Add to cart
+            </button>
+          )}
+          <Link className="route-link"
+            to={`/products/${selectedcat}/${item.id}`}
+          ><button className="buttons__btn buttons__btn--more">
+            View Product
+            </button>
+          </Link>
+        </div>
       </div>
     </div>
   );

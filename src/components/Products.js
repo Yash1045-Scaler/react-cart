@@ -1,57 +1,62 @@
 import React, { useEffect, useState } from "react";
 import Item from './Item'
+import { useParams,Link } from "react-router-dom";
 
-const Products = ({setselectedcat,selectedcat, cart, setCart,category,setcategory}) => {
+const Products = ({ cart, setCart, category, setcategory }) => {
   const [products, setproducts] = useState([]);
   // const [category, setcategory] = useState([]);
-  
-  
-  const fetchProducts = async (category) => {
-    let url = "https://fakestoreapi.com/products/category/"+category;
-    const res = await fetch(url ,{
-        method:"GET",
-        headers: {
-            "Content-Type": "application/json",
-        },
-    });
-    const data = await res.json();
-    setproducts(data);
-  }
-  const fetchData = async () => {
-    const res = await fetch("https://fakestoreapi.com/products/categories", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    const data = await res.json();
-    setcategory(data);
-    if(selectedcat.length === 0){
-        setselectedcat(data[0]);
-    }
-    if(selectedcat) fetchProducts(selectedcat);
-  };
+  const { selectedcat } = useParams();
   
   useEffect(() => {
+    const fetchProducts = async () => {
+      let url = "https://fakestoreapi.com/products/category/" + selectedcat;
+      const res = await fetch(url, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const data = await res.json();
+      setproducts(data);
+    }
+    const fetchData = async () => {
+      const res = await fetch("https://fakestoreapi.com/products/categories", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const data = await res.json();
+      setcategory(data);
+    };
     fetchData();
-  }, [selectedcat]);
-  
+    // console.log(selectedcat)
+    if (selectedcat) fetchProducts();
+  }, [selectedcat, setcategory]);
+
   return (
     <div className="shopping">
       <div className="shopping__category category">
         {category.map((cat, i) =>
           selectedcat === cat ? (
-            <div className="category__name category__name--selected" onClick={()=>{setselectedcat(cat);fetchProducts(cat);}} key={i}>
-              {cat}
-            </div>
+            <Link
+              className="category__name category__name--selected"
+              key={i}
+              to={`/products/${cat}`}
+            >
+              <div>{cat}</div>
+            </Link>
           ) : (
-            <div className="category__name" onClick={()=>{setselectedcat(cat);fetchProducts(cat);}} key={i}>{cat}</div>
+            <Link className="category__name" key={i} to={`/products/${cat}`}>
+              <div>{cat}</div>
+            </Link>
           )
         )}
       </div>
       <div className="shopping__items items">
-        {products.map((item,i) => <Item key={i} item={item} cart={cart} setCart={setCart}/>
-        )}
+        {products.map((item, i) => (
+          <Item key={i} item={item} cart={cart} setCart={setCart} />
+        ))}
       </div>
     </div>
   );
