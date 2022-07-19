@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect } from "react";
 import { FaShoppingCart, FaHome } from "react-icons/fa";
-import { NavLink, useNavigate, useLocation, useParams } from "react-router-dom";
+import { NavLink, useNavigate, useLocation, } from "react-router-dom";
 
 const Header = ({ page, setPage }) => {
     const navigate = useNavigate();
