@@ -50,15 +50,23 @@ body {
   padding-top: 0.3125rem;
   white-space: nowrap;
 }
-.nav__cart {
+.nav__opt {
   margin: 0.7rem;
-  width: 80px;
+  max-width: 10rem;
+  width: 100%;
   height: 40px;
   background-color: green;
   display: flex;
   border-radius: 1rem;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
+}
+
+.opt__home {
+  margin-top: 0.3rem;
+}
+.opt__cart {
+  margin-top: 0.3rem;
 }
 
 .shopping {

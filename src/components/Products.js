@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import Item from './Item'
 
-const Products = ({setselectedcat,selectedcat, cart, setCart}) => {
+const Products = ({setselectedcat,selectedcat, cart, setCart,category,setcategory}) => {
   const [products, setproducts] = useState([]);
-  const [category, setcategory] = useState([]);
+  // const [category, setcategory] = useState([]);
   
   
   const fetchProducts = async (category) => {

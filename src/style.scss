@@ -46,17 +46,26 @@ body {
         padding-top: .3125rem;
         white-space: nowrap;
     }
-    &__cart{
+    &__opt{
         margin: 0.7rem;
-        width: 80px;
+        max-width: 10rem;
+        width: 100%;
         height: 40px;
         background-color: green;
         // padding-bottom: .3125rem;
         // padding-top: .3125rem;
         display: flex;
         border-radius: 1rem;
-        justify-content: center;
+        justify-content: space-around;
         align-items: center;
+    }
+}
+.opt{
+    &__home{
+        margin-top: 0.3rem;
+    }
+    &__cart{
+        margin-top: 0.3rem;
     }
 }
 .shopping{
