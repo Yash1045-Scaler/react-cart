@@ -1,5 +1,6 @@
 import React from "react";
 import Item from './Item'
+import { useEffect } from "react";
 
 import { Link,useParams } from "react-router-dom";
 
@@ -11,6 +12,21 @@ const Cart = ({
   setcategory,
 }) => {
   const { selectedcat } = useParams();
+  useEffect(() => {
+
+    const fetchData = async () => {
+      const res = await fetch("https://fakestoreapi.com/products/categories", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const data = await res.json();
+      setcategory(data);
+    };
+    fetchData();
+    // console.log(selectedcat)
+  }, [selectedcat, setcategory]);
   return (
     <div className="shopping">
       <div className="shopping__category category">

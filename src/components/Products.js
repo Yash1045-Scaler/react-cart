@@ -4,7 +4,6 @@ import { useParams,Link } from "react-router-dom";
 
 const Products = ({ cart, setCart, category, setcategory }) => {
   const [products, setproducts] = useState([]);
-  // const [category, setcategory] = useState([]);
   const { selectedcat } = useParams();
   
   useEffect(() => {
