@@ -1,10 +1,10 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import ProductCard from "./ProductCard";
 
+import ProductCard from "../components/ProductCard";
 
-const ItemPage = ({ cart, setCart }) => {
+const ProductPage = ({ cart, setCart }) => {
   const [item, setItem] = useState({});
   const { id } = useParams();
 
@@ -23,10 +23,10 @@ const ItemPage = ({ cart, setCart }) => {
   }, [id]);
 
   if (item.id) return (
-    
-  <ProductCard item={item} cart={cart} setCart={setCart} />
+    <div className="item">
+      <ProductCard item={item} cart={cart} setCart={setCart} />
+    </div>
   );
-  else return <div> Loading...</div>;
 };
 
-export default ItemPage;
+export default ProductPage;

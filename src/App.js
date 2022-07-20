@@ -1,15 +1,15 @@
 import React, { useState } from "react";
-import Header from "./components/Header";
-import Products from "./components/Products";
-import Cart from "./components/Cart";
 import { Routes,Route } from "react-router-dom";
-import ItemPage from "./components/ItemPage";
+
+import Cart from "./pages/Cart";
+import Header from "./components/Header";
+import ProductPage from "./pages/ProductPage";
+import Products from "./pages/Products";
 
 const App = () => {
   const [page, setPage] = useState("products");
-  const [selectedcat, setselectedcat] = useState("");
   const [cart, setCart] = useState([]);
-  const [category, setcategory] = useState([]);
+  const [categories, setCategories] = useState([]);
 
 
   return (
@@ -18,28 +18,28 @@ const App = () => {
 
       <Routes>
         <Route
-          path="/products/:selectedcat"
+          path="/products/:selectedCategory"
           element={
             <Products
               cart={cart}
               setCart={setCart}
-              category={category}
-              setcategory={setcategory}
+              categories={categories}
+              setCategories={setCategories}
             />
           }
         />
         <Route
-          path="/cart/:selectedcat"
+          path="/cart/:selectedCategory"
           element={
             <Cart
               cart={cart}
               setCart={setCart}
-              category={category}
-              setcategory={setcategory}
+              categories={categories}
+              setCategories={setCategories}
             />
           }
         />
-        <Route path="products/:selectedcat/:id" element={<ItemPage cart={cart} setCart={setCart}/>} />
+        <Route path="products/:selectedCategory/:id" element={<ProductPage cart={cart} setCart={setCart}/>} />
       </Routes>
       
     </div>

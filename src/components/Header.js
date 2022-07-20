@@ -1,7 +1,9 @@
 import React from "react";
 import { useEffect } from "react";
 import { FaShoppingCart, FaHome } from "react-icons/fa";
-import { NavLink, useNavigate, useLocation, } from "react-router-dom";
+import { NavLink, useNavigate, useLocation} from "react-router-dom";
+
+import '../styles/components/Header.scss'
 
 const Header = ({ page, setPage }) => {
     const navigate = useNavigate();
@@ -13,11 +15,11 @@ const Header = ({ page, setPage }) => {
 
     return (
       <nav className="header">
-        <div className="header__nav nav">
-          <span className="nav__brand">Shopping Cart</span>
-          <div className="nav__opt opt">
+        
+          <span className="header__brand">Shopping Cart</span>
+          <div className="header__option option">
             <NavLink
-              className="opt__home"
+              className="option__nav option__nav--home"
               to={`/products/${location.pathname.split("/")[2]}`}
             >
               <FaHome
@@ -30,7 +32,7 @@ const Header = ({ page, setPage }) => {
               />
             </NavLink>
             <NavLink
-              className="opt__cart"
+              className="option__nav option__nav--cart"
               to={`/cart/${location.pathname.split("/")[2]}`}
             >
               <FaShoppingCart
@@ -41,7 +43,7 @@ const Header = ({ page, setPage }) => {
               />
             </NavLink>
           </div>
-        </div>
+        
       </nav>
     );
 };
