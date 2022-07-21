@@ -3,28 +3,20 @@ import { Routes,Route } from "react-router-dom";
 
 import Cart from "./pages/Cart";
 import Header from "./components/Header";
+import MainContext from "./context";
 import ProductPage from "./pages/ProductPage";
 import Products from "./pages/Products";
 
 const App = () => {
-  const [page, setPage] = useState("products");
-  const [cart, setCart] = useState([]);
-  const [categories, setCategories] = useState([]);
-
-
   return (
-    <div>
-      <Header setPage={setPage} page={page} />
+    <MainContext>
+      <Header />
 
       <Routes>
         <Route
           path="/products/:selectedCategory"
           element={
             <Products
-              cart={cart}
-              setCart={setCart}
-              categories={categories}
-              setCategories={setCategories}
             />
           }
         />
@@ -32,17 +24,13 @@ const App = () => {
           path="/cart/:selectedCategory"
           element={
             <Cart
-              cart={cart}
-              setCart={setCart}
-              categories={categories}
-              setCategories={setCategories}
             />
           }
         />
-        <Route path="products/:selectedCategory/:id" element={<ProductPage cart={cart} setCart={setCart}/>} />
+        <Route path="products/:selectedCategory/:id" element={<ProductPage/>} />
       </Routes>
       
-    </div>
+    </MainContext>
   );
 };
 

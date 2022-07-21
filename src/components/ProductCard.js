@@ -1,18 +1,15 @@
-import React from "react";
+import React, {useContext} from "react";
 import { useLocation,Link,useParams } from "react-router-dom";
 
-import "../styles/components/ProductCard.scss";
+import { DataContext } from "../context";
 
-const ProductCard = ({ item, cart, setCart }) => {
+const ProductCard = ({ item }) => {
     const location = useLocation();
     const { selectedCategory } = useParams();
+    const {cart,removeFromCart,addToCart} = useContext(DataContext);
 
-    const removeFromCart = () => {
-        let tempCart = cart.filter((product) => product.id !== item.id);
-        setCart(tempCart);
-    };
     return (
-      <div className="item__card card">
+      <div className="card">
         <div className="card__img">
           <img src={item.image} />
         </div>
@@ -35,14 +32,14 @@ const ProductCard = ({ item, cart, setCart }) => {
             ).length ? (
               <button
                 className="buttons__btn buttons__btn--remove"
-                onClick={removeFromCart}
+                onClick={()=>removeFromCart(item)}
               >
                 Remove from cart
               </button>
             ) : (
               <button
                 className="buttons__btn buttons__btn--add"
-                onClick={() => setCart([item, ...cart])}
+                onClick={()=>addToCart(item)}
               >
                 Add to cart
               </button>

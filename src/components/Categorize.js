@@ -1,10 +1,13 @@
-import React from 'react'
-import { Link,useLocation } from 'react-router-dom';
+import React, { useContext } from 'react'
+import { Link,useLocation, useParams } from 'react-router-dom';
 
-import '../styles/components/Categorize.scss'
+import { DataContext } from '../context';
 
-const Categorize = ({categories,selectedCategory}) => {
+const Categorize = () => {
+    const {selectedCategory} = useParams();
     const location = useLocation();
+    const {categories} = useContext(DataContext)
+
   return (
     <div className=" category">
       {categories.map((category, i) =>
