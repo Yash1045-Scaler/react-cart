@@ -1,7 +1,6 @@
 import React from "react";
 import { useLocation,Link,useParams } from "react-router-dom";
 
-import "../styles/components/ProductCard.scss";
 
 const ProductCard = ({ item, cart, setCart }) => {
     const location = useLocation();

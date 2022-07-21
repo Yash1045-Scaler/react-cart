@@ -3,7 +3,6 @@ import { useEffect } from "react";
 import { FaShoppingCart, FaHome } from "react-icons/fa";
 import { NavLink, useNavigate, useLocation} from "react-router-dom";
 
-import '../styles/components/Header.scss'
 
 const Header = ({ page, setPage }) => {
     const navigate = useNavigate();

@@ -3,7 +3,6 @@ import { useParams} from "react-router-dom";
 import Categorize from "../components/Categorize";
 
 import ProductCard from "../components/ProductCard";
-import '../styles/pages/Page-style.scss'
 
 const Products = ({ cart, setCart, categories, setCategories }) => {
   const [products, setProducts] = useState([]);

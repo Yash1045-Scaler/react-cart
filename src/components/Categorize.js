@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link,useLocation } from 'react-router-dom';
 
-import '../styles/components/Categorize.scss'
 
 const Categorize = ({categories,selectedCategory}) => {
     const location = useLocation();
