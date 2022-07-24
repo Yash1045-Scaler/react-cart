@@ -1,13 +1,15 @@
-import React, {useContext} from "react";
+import React from "react";
 import { useLocation,Link,useParams } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 
-import { DataContext } from "../context";
+import { addToCart } from "../store/cart";
+import { removeFromCart } from "../store/cart";
 
 const ProductCard = ({ item }) => {
     const location = useLocation();
     const { selectedCategory } = useParams();
-    const {cart,removeFromCart,addToCart} = useContext(DataContext);
-
+    const {cart} = useSelector((state) => state.cartReducer);
+    const dispatch = useDispatch();
     return (
       <div className="card">
         <div className="card__img">
@@ -32,14 +34,14 @@ const ProductCard = ({ item }) => {
             ).length ? (
               <button
                 className="buttons__btn buttons__btn--remove"
-                onClick={()=>removeFromCart(item)}
+                onClick={() => dispatch(removeFromCart(cart, item))}
               >
                 Remove from cart
               </button>
             ) : (
               <button
                 className="buttons__btn buttons__btn--add"
-                onClick={()=>addToCart(item)}
+                onClick={() => dispatch(addToCart(cart, item))}
               >
                 Add to cart
               </button>

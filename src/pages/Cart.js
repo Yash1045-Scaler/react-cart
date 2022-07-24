@@ -1,21 +1,17 @@
-import React, { useContext } from "react";
-import { useEffect } from "react";
+import React from "react";
 import { useParams } from "react-router-dom";
+import { useSelector} from "react-redux";
 
 import Categorize from "../components/Categorize";
 import ProductCard from "../components/ProductCard";
-import { DataContext } from "../context";
 
 const Cart = () => {
-  const {cart,setCategories,fetchCategories} = useContext(DataContext);
+  const {cart} = useSelector(state => state.cartReducer);
   const { selectedCategory } = useParams();
-  useEffect(() => {
-    fetchCategories();
-  }, [selectedCategory, setCategories]);
   return (
     <div className="page-container">
       <Categorize/>
-      {cart.filter((item) => item.category === selectedCategory).length ===
+      {cart?.filter((item) => item.category === selectedCategory).length ===
       0 ? (
         <div className="page-container__empty">
           <p>Your {selectedCategory} Cart is empty</p>

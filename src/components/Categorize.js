@@ -1,16 +1,17 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { Link,useLocation, useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
-import { DataContext } from '../context';
 
 const Categorize = () => {
     const {selectedCategory} = useParams();
     const location = useLocation();
-    const {categories} = useContext(DataContext)
+    const {categories, loading, error} = useSelector((state) => state.categoriesReducer);
 
   return (
     <div className=" category">
-      {categories.map((category, i) =>
+      {loading && "Loading..."}
+      {!loading && categories?.map((category, i) =>
         selectedCategory === category ? (
           <Link
             className="category__name category__name--selected"
@@ -29,6 +30,7 @@ const Categorize = () => {
           </Link>
         )
       )}
+      {error}
     </div>
   );
 }

@@ -1,22 +1,28 @@
-import React ,{useContext} from "react";
+import React from "react";
 import { useParams } from "react-router-dom";
 import { useEffect} from "react";
+import {useSelector, useDispatch} from 'react-redux';
 
 import ProductCard from "../components/ProductCard";
-import { DataContext } from "../context";
+import { updateProduct } from "../store/product";
 
 
 const ProductPage = () => {
-  const {item,fetchProduct} = useContext(DataContext);
+  const {product} = useSelector(state => state.productReducer);
+  const dispatch = useDispatch();
   const { id } = useParams();
 
   useEffect(() => {
-    fetchProduct(id);
+    dispatch(updateProduct(id));
+
+    return () => {
+      dispatch(updateProduct("empty"));
+    }
   }, [id]);
 
-  if (item.id) return (
+  if (product?.id) return (
     <div className="item">
-      <ProductCard item={item} />
+      <ProductCard item={product} />
     </div>
   );
 };

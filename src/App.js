@@ -1,15 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
 import { Routes,Route } from "react-router-dom";
+import { Provider } from "react-redux";
 
 import Cart from "./pages/Cart";
 import Header from "./components/Header";
-import MainContext from "./context";
+// import MainContext from "./context";
 import ProductPage from "./pages/ProductPage";
 import Products from "./pages/Products";
+import store from "./store";
 
 const App = () => {
   return (
-    <MainContext>
+    <Provider store={store}>
       <Header />
 
       <Routes>
@@ -30,7 +32,7 @@ const App = () => {
         <Route path="products/:selectedCategory/:id" element={<ProductPage/>} />
       </Routes>
       
-    </MainContext>
+    </Provider>
   );
 };
 

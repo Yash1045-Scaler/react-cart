@@ -1,19 +1,23 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect} from "react";
 import { useParams} from "react-router-dom";
+import { useSelector,useDispatch } from "react-redux";
+
 
 import Categorize from "../components/Categorize";
 import ProductCard from "../components/ProductCard";
-import { DataContext } from "../context";
+import { updateProducts } from "../store/products";
+import { updateCategories } from "../store/categories";
 
 const Products = () => {
-  const { products, categories, fetchCategories, fetchProducts } = useContext(DataContext);
+  const { products, categories } = useSelector(state => ({...state.productsReducer, ...state.categoriesReducer}));
   const { selectedCategory } = useParams();
+  const dispatch = useDispatch();
   
   useEffect(() => {
-    fetchCategories();
-    if (selectedCategory) fetchProducts(selectedCategory);
+    if(categories.length === 0)dispatch(updateCategories());
+    if (selectedCategory) dispatch(updateProducts(selectedCategory));
   }, [selectedCategory]);
-
+  
   return (
     <div className="page-container ">
       <Categorize />
