@@ -5,10 +5,11 @@ import {useSelector, useDispatch} from 'react-redux';
 
 import ProductCard from "../components/ProductCard";
 import { updateProduct } from "../store/product";
+import { productDataSelector } from "../selectors/product";
 
 
 const ProductPage = () => {
-  const {product} = useSelector(state => state.productReducer);
+  const {product} = useSelector(productDataSelector);
   const dispatch = useDispatch();
   const { id } = useParams();
 

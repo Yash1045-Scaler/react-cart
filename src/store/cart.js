@@ -1,31 +1,40 @@
-const UPDATE_CART= 'cart/UPDATE_CART';
+const ADD_TO_CART = "cart/ADD_TO_CART";
+const REMOVE_FROM_CART = "cart/REMOVE_FROM_CART";
 
-export const addToCart = (cart, product) => {
+export const addToCart = (product) => {
     return {
-        type: UPDATE_CART,
-        payload: [...cart, product],
-    }
-}
+        type: ADD_TO_CART,
+        payload: product,
+    };
+};
 
-export const removeFromCart = (cart,item) => {
+export const removeFromCart = (id) => {
     return {
-        type: UPDATE_CART,
-        payload : cart.filter((product) => product.id !== item.id),
-    }
-}
+        type: REMOVE_FROM_CART,
+        payload:id,
+    };
+};
 
-const cartReducer = (state = {
-    cart : [],
-},action) => {
-    switch(action.type){
-        case UPDATE_CART:
-            return{
+const cartReducer = (
+    state = {
+        cart: [],
+    },
+    action
+) => {
+    switch (action.type) {
+        case ADD_TO_CART:
+            return {
                 ...state,
-                cart : action.payload,
-            }
+                cart: [...state.cart,action.payload],
+            };
+        case REMOVE_FROM_CART:
+            return {
+                ...state,
+                cart: [...state.cart.filter((product) => product.id !== action.payload)],
+            };
         default:
-            return{...state}
+            return { ...state };
     }
-}
+};
 
-export default cartReducer
+export default cartReducer;

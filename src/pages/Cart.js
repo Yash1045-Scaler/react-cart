@@ -4,9 +4,10 @@ import { useSelector} from "react-redux";
 
 import Categorize from "../components/Categorize";
 import ProductCard from "../components/ProductCard";
+import { cartDataSelector } from "../selectors/cart";
 
 const Cart = () => {
-  const {cart} = useSelector(state => state.cartReducer);
+  const {cart} = useSelector(cartDataSelector);
   const { selectedCategory } = useParams();
   return (
     <div className="page-container">

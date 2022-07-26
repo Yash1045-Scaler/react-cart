@@ -5,11 +5,12 @@ import { useSelector,useDispatch } from "react-redux";
 
 import Categorize from "../components/Categorize";
 import ProductCard from "../components/ProductCard";
+import { productsDataSelector } from "../selectors/products";
 import { updateProducts } from "../store/products";
 import { updateCategories } from "../store/categories";
 
 const Products = () => {
-  const { products, categories } = useSelector(state => ({...state.productsReducer, ...state.categoriesReducer}));
+  const { products, categories } = useSelector(productsDataSelector);
   const { selectedCategory } = useParams();
   const dispatch = useDispatch();
   

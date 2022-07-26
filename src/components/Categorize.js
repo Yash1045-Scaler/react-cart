@@ -2,11 +2,12 @@ import React from 'react'
 import { Link,useLocation, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
+import { categoriesDataSelector } from '../selectors/categories';
 
 const Categorize = () => {
     const {selectedCategory} = useParams();
     const location = useLocation();
-    const {categories, loading, error} = useSelector((state) => state.categoriesReducer);
+    const {categories, loading, error} = useSelector(categoriesDataSelector);
 
   return (
     <div className=" category">
