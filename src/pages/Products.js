@@ -35,14 +35,6 @@ const Products = ({ cart, setCart, categories, setCategories }) => {
   }, [selectedCategory, setCategories]);
 
   return (
-    // <div className="shopping">
-    //   <Categorize categories={categories} selectedCategory={selectedCategory} />
-    //   <div className="shopping__items items">
-    //     {products.map((item, i) => (
-    //       <Item key={i} item={item} cart={cart} setCart={setCart} />
-    //     ))}
-    //   </div>
-    // </div>
     <div className="page-container ">
       <Categorize categories={categories} selectedCategory={selectedCategory} />
       <div className="page-container__items">

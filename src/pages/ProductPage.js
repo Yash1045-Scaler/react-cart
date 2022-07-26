@@ -22,11 +22,14 @@ const ProductPage = ({ cart, setCart }) => {
     fetchitem();
   }, [id]);
 
-  if (item.id) return (
+  if (item.id){ return (
     <div className="item">
       <ProductCard item={item} cart={cart} setCart={setCart} />
     </div>
-  );
+  );}
+  else{
+    return null;
+  }
 };
 
 export default ProductPage;

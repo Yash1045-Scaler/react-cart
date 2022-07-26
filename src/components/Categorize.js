@@ -1,9 +1,9 @@
 import React from 'react'
-import { Link,useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
-
-const Categorize = ({categories,selectedCategory}) => {
-    const location = useLocation();
+const Categorize = ({ categories, selectedCategory }) => {
+  const location = useLocation();
+  const pageType = location.pathname.split("/")[1];
   return (
     <div className=" category">
       {categories.map((category, i) =>
@@ -11,7 +11,7 @@ const Categorize = ({categories,selectedCategory}) => {
           <Link
             className="category__name category__name--selected"
             key={i}
-            to={`/${location.pathname.split("/")[1]}/${category}`}
+            to={`/${pageType}/${category}`}
           >
             <div>{category}</div>
           </Link>
@@ -19,7 +19,7 @@ const Categorize = ({categories,selectedCategory}) => {
           <Link
             className="category__name"
             key={i}
-            to={`/${location.pathname.split("/")[1]}/${category}`}
+            to={`/${pageType}/${category}`}
           >
             <div>{category}</div>
           </Link>

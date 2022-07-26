@@ -13,7 +13,6 @@ const Cart = ({
 }) => {
   const { selectedCategory } = useParams();
   useEffect(() => {
-
     const fetchData = async () => {
       const res = await fetch("https://fakestoreapi.com/products/categories", {
         method: "GET",
@@ -25,7 +24,6 @@ const Cart = ({
       setCategories(data);
     };
     fetchData();
-    // console.log(selectedcat)
   }, [selectedCategory, setCategories]);
   return (
     <div className="page-container">

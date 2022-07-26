@@ -21,6 +21,7 @@ const App = () => {
           path="/products/:selectedCategory"
           element={
             <Products
+              page={page}
               cart={cart}
               setCart={setCart}
               categories={categories}
@@ -32,6 +33,7 @@ const App = () => {
           path="/cart/:selectedCategory"
           element={
             <Cart
+              page={page}
               cart={cart}
               setCart={setCart}
               categories={categories}
@@ -39,9 +41,11 @@ const App = () => {
             />
           }
         />
-        <Route path="products/:selectedCategory/:id" element={<ProductPage cart={cart} setCart={setCart}/>} />
+        <Route
+          path="products/:selectedCategory/:id"
+          element={<ProductPage cart={cart} setCart={setCart} />}
+        />
       </Routes>
-      
     </div>
   );
 };

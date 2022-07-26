@@ -1,15 +1,17 @@
 import React from "react";
 import { useLocation,Link,useParams } from "react-router-dom";
 
-
 const ProductCard = ({ item, cart, setCart }) => {
     const location = useLocation();
     const { selectedCategory } = useParams();
-
+    const id = location.pathname.split("/")[3];
     const removeFromCart = () => {
         let tempCart = cart.filter((product) => product.id !== item.id);
         setCart(tempCart);
     };
+    const addToCart = () =>{
+      setCart([...cart,item]);
+    }
     return (
       <div className="item__card card">
         <div className="card__img">
@@ -17,7 +19,7 @@ const ProductCard = ({ item, cart, setCart }) => {
         </div>
         <div className="card__details details">
           <div className="details__title">{item.title}</div>
-          {location.pathname.split("/").length === 4 && (
+          {id !== undefined && (
             <div className="details__description">{item.description}</div>
           )}
           <div className="details__price">${item.price}</div>
@@ -41,12 +43,12 @@ const ProductCard = ({ item, cart, setCart }) => {
             ) : (
               <button
                 className="buttons__btn buttons__btn--add"
-                onClick={() => setCart([item, ...cart])}
+                onClick={addToCart}
               >
                 Add to cart
               </button>
             )}
-            {location.pathname.split("/").length === 3 && (
+            {id === undefined && (
               <Link to={`/products/${selectedCategory}/${item.id}`}>
                 <button className="buttons__btn buttons__btn--more">
                   View Product
