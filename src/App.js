@@ -1,25 +1,53 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import { Routes,Route } from "react-router-dom";
 
-function App() {
+import Cart from "./pages/Cart";
+import Header from "./components/Header";
+import ProductPage from "./pages/ProductPage";
+import Products from "./pages/Products";
+
+const App = () => {
+  const [page, setPage] = useState("products");
+  const [cart, setCart] = useState([]);
+  const [categories, setCategories] = useState([]);
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Header setPage={setPage} page={page} />
+
+      <Routes>
+        <Route
+          path="/products/:selectedCategory"
+          element={
+            <Products
+              page={page}
+              cart={cart}
+              setCart={setCart}
+              categories={categories}
+              setCategories={setCategories}
+            />
+          }
+        />
+        <Route
+          path="/cart/:selectedCategory"
+          element={
+            <Cart
+              page={page}
+              cart={cart}
+              setCart={setCart}
+              categories={categories}
+              setCategories={setCategories}
+            />
+          }
+        />
+        <Route
+          path="products/:selectedCategory/:id"
+          element={<ProductPage cart={cart} setCart={setCart} />}
+        />
+      </Routes>
     </div>
   );
-}
+};
 
 export default App;
