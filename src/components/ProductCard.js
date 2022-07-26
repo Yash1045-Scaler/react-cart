@@ -8,6 +8,7 @@ import { removeFromCart } from "../store/cart";
 
 const ProductCard = ({ item }) => {
     const location = useLocation();
+    const id = location.pathname.split("/")[3];
     const { selectedCategory } = useParams();
     const {cart} = useSelector(cartDataSelector);
     const dispatch = useDispatch();
@@ -18,7 +19,7 @@ const ProductCard = ({ item }) => {
         </div>
         <div className="card__details details">
           <div className="details__title">{item.title}</div>
-          {location.pathname.split("/").length === 4 && (
+          {id !== undefined && (
             <div className="details__description">{item.description}</div>
           )}
           <div className="details__price">${item.price}</div>
@@ -47,7 +48,7 @@ const ProductCard = ({ item }) => {
                 Add to cart
               </button>
             )}
-            {location.pathname.split("/").length === 3 && (
+            {id === undefined && (
               <Link to={`/products/${selectedCategory}/${item.id}`}>
                 <button className="buttons__btn buttons__btn--more">
                   View Product

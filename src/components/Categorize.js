@@ -7,6 +7,7 @@ import { categoriesDataSelector } from '../selectors/categories';
 const Categorize = () => {
     const {selectedCategory} = useParams();
     const location = useLocation();
+    const pageType = location.pathname.split("/")[1];
     const {categories, loading, error} = useSelector(categoriesDataSelector);
 
   return (
@@ -17,7 +18,7 @@ const Categorize = () => {
           <Link
             className="category__name category__name--selected"
             key={i}
-            to={`/${location.pathname.split("/")[1]}/${category}`}
+            to={`/${pageType}/${category}`}
           >
             <div>{category}</div>
           </Link>
@@ -25,7 +26,7 @@ const Categorize = () => {
           <Link
             className="category__name"
             key={i}
-            to={`/${location.pathname.split("/")[1]}/${category}`}
+            to={`/${pageType}/${category}`}
           >
             <div>{category}</div>
           </Link>

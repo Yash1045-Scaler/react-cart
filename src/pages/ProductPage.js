@@ -21,11 +21,15 @@ const ProductPage = () => {
     }
   }, [id]);
 
-  if (product?.id) return (
-    <div className="item">
-      <ProductCard item={product} />
-    </div>
-  );
+  if (product.id) {
+    return (
+      <div className="item">
+        <ProductCard item={product} />
+      </div>
+    );
+  } else {
+    return null;
+  }
 };
 
 export default ProductPage;
